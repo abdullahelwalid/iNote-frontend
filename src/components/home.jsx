@@ -1,10 +1,11 @@
 import React from "react";
 
+
 function Home(){
     return (
-        <dev>
+        <div>
         <h1 className="title">Welcome to INOTE</h1>
-        </dev>
+        </div>
     )
 }
 
