@@ -1,12 +1,14 @@
 import React from "react";
 import Input from "./input";
-
+import { Link } from "react-router-dom";
 
 
 
 function Form(){
     return (
-            <form className="form" className="container">
+        <dev>
+            <a href="/" style={{textDecoration: 'none', color: "white"}}><h1 className="title">INOTE</h1></a>
+            <form className="form container">
                 <Input
                     type="text" placeholder="Username"
                 />
@@ -15,6 +17,13 @@ function Form(){
                 />
                 <button type="submit">Login</button>
             </form>
+
+            <Link to="/sign-up">
+                <button variant="outlined">
+                    Sign up
+                </button>
+            </Link>
+        </dev>
     );
 };
 
