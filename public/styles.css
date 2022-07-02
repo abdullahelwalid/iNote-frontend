@@ -7,18 +7,19 @@
   
   body {
     font-family: "Source Sans Pro", sans-serif;
-    color: white;
+    color: #f2f3f9;
     font-weight: 300;
-    background: #50a3a2;
+    background: #769FCD;
     width: 100%;
     height: 100%;
     text-align: center;
   }
   
 .nav-bar {
-    height: 50px;
-    background: #54BAB9;
-    padding: 10px 10px;
+    height: 40px;
+    background: #D6E6F2;
+    margin-bottom: 20px;
+    
 }
 
 .nav-bar-text{
@@ -26,17 +27,21 @@
     float: right;
     padding: 0 10px 0 10px;
     font-size: 20px;
+    margin-top: 10px;
+    color: #51557E;
 }
 
 .nav-bar-logo{
     display: inline;
     float: left;
     font-size: 24px;
-    padding-left: 10px;
+    margin-top: 10px;
+    padding-left: 60px;
+    color: #51557E;
 }
 
   .title {
-    padding-top: 100px;
+    margin-bottom: 10px;
   }
 
   .container {
@@ -83,3 +88,18 @@
     font-size: 18px;
   }
   
+.note {
+    height: 128px;
+    width: 400;
+    overflow: scroll;
+    text-align: justify;
+    padding: 10px 10px 10px 10px;
+}
+
+.note-container{
+    display: inline-table;
+    width: 420px;
+    height: 30%;
+    float: center;
+    text-align: justify;
+}

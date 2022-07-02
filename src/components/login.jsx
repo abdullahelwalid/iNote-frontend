@@ -1,13 +1,14 @@
 import React from "react";
 import Input from "./input";
 import { Link } from "react-router-dom";
-
+import Divider from "@mui/material/Divider";
 
 
 function Form(){
     return (
         <div>
-            <a href="/" style={{textDecoration: 'none', color: "white"}}><h1 className="title">INOTE</h1></a>
+            <h1 className="title">Login</h1>
+            <Divider/>
             <form className="form container">
                 <Input
                     type="text" placeholder="Username"
