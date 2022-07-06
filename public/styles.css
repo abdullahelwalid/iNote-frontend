@@ -89,7 +89,7 @@
   }
   
 .note {
-    height: 128px;
+    height: inherit;
     width: 400;
     overflow: scroll;
     text-align: justify;
