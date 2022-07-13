@@ -4,7 +4,6 @@ import axios from "axios";
 import { Alert } from "@mui/material";
 import Collapse from '@mui/material/Collapse';
 import AddNote from "./addNote";
-import DeleteNoteIcon from "./delete_note_icon";
 
 
 function Home() {
@@ -38,8 +37,7 @@ function Home() {
           className="
             note-container"
         >
-        <DeleteNoteIcon note_id={note.note_id}/>
-          <Note content={note.note} key={note.note_id} />
+          <Note content={note.note} key={note.note_id} note_id={note.note_id}/>
           
         </div>
       ))}

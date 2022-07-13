@@ -89,17 +89,18 @@
   }
   
 .note {
-    height: inherit;
+    max-height: 100px;
     width: 400;
     overflow: scroll;
     text-align: justify;
     padding: 10px 10px 10px 10px;
+    height: inherit;
 }
 
 .note-container{
     display: inline-table;
     width: 420px;
-    height: 30%;
+    max-height: 140px;
     float: center;
     text-align: justify;
 }
@@ -123,5 +124,7 @@
 
 
 .delete-icon {
-    width: fit-content;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
 }
