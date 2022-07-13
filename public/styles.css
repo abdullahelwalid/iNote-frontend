@@ -103,3 +103,25 @@
     float: center;
     text-align: justify;
 }
+
+
+.add-note {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    margin-left: 80%;
+    margin-bottom: 10px;
+    width: fit-content;
+    height: fit-content;
+    text-align: right;
+    z-index: 100;
+}
+
+.add-icon {
+    color: #7A86B6;
+}
+
+
+.delete-icon {
+    width: fit-content;
+}
