@@ -127,7 +127,6 @@
 }
 
 .new-note {
-    background-color: white;
     width: 70%;
     height: 200px;
     text-align: center;
@@ -135,6 +134,7 @@
     margin: auto;
     margin-top: 10%;
     margin-left: 15%;
+    box-shadow: 5px 10px 18px #888888;
 }
 
 .add-note-textarea {
@@ -142,8 +142,6 @@
     height: inherit;
     resize: none;
     padding: 10px 10px 10px 10px;
-}
-
-.add-note-save {
-
+    background-color: #f8f5ee;
+    box-shadow: 5px 10px 18px #888888;
 }
