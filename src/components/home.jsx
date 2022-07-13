@@ -31,7 +31,7 @@ function Home() {
     :  
     <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
       <h1 className="title">Welcome to INOTE</h1>
-      <AddNote color="action"/>
+      
       {notes.map((note) => (
         <div
           className="
@@ -41,6 +41,7 @@ function Home() {
           
         </div>
       ))}
+        <AddNote color="action"/>
     </div>
   );
 }
