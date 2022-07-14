@@ -1,21 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Collapse } from "@mui/material";
 import { Alert } from "@mui/material";
-
+import { NoteContext } from "../contexts/context";
 
 function FeedbackMessage(props) {
-  const [collapse, setCollapse] = useState(true);
+  const {
+    feedbackMessage,
+    collapse,
+    setSuccess,
+    setError,
+    setCollapse,
+  } = useContext(NoteContext);
   return (
-    <Collapse in={collapse}>
-      <Alert
-        onClose={() => {
-          setCollapse(false);
-        }}
-        severity={props.type}
-      >
-        {props.message}
-      </Alert>
-    </Collapse>
+    <div className="feedback">
+      <Collapse in={collapse}>
+        <Alert
+          onClose={() => {
+            setCollapse(false);
+            setSuccess(false);
+            setError(false);
+          }}
+          severity={props.type}
+        >
+          {feedbackMessage}
+        </Alert>
+      </Collapse>
+    </div>
   );
 }
 

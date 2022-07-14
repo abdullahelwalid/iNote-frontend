@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Note from "./note";
 import axios from "axios";
-import { Alert } from "@mui/material";
-import Collapse from "@mui/material/Collapse";
 import AddNote from "./addNote";
 import { NoteContext } from "../contexts/context";
+import FeedbackMessage from "./feedback";
 
 function Home() {
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [collapse, setCollapse] = useState(true);
+  const [feedbackMessage, setFeedbackMessage] = useState();
 
   useEffect(() => {
     axios
@@ -20,23 +21,26 @@ function Home() {
       .catch((err) => {
         console.log(err);
         setError(true);
+        setCollapse(true)
       });
   }, []);
 
-  return error ? (
-    <Collapse in={collapse}>
-      <Alert
-        onClose={() => {
-          setCollapse(false);
-        }}
-        severity="error"
-      >
-        An error has occurred
-      </Alert>
-    </Collapse>
-  ) : (
-    <NoteContext.Provider value={{ notes, setNotes }}>
+  return (
+    <NoteContext.Provider
+      value={{
+        notes,
+        setNotes,
+        feedbackMessage,
+        setFeedbackMessage,
+        collapse,
+        setSuccess,
+        setError,
+        setCollapse,
+      }}
+    >
       <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
+        {error && <FeedbackMessage type="error"/>}
+        {success && <FeedbackMessage type="success"/>}
         <h1 className="title">Welcome to INOTE</h1>
 
         {console.log("map", notes)}
@@ -52,7 +56,7 @@ function Home() {
             />
           </div>
         ))}
-        <AddNote color="action"/>
+        <AddNote color="action" />
       </div>
     </NoteContext.Provider>
   );

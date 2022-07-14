@@ -1,16 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, {  useContext } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import IconButton from "@mui/material/IconButton";
 import axios from "axios";
-import { Alert } from "@mui/material";
-import Collapse from "@mui/material/Collapse";
 import { NoteContext } from "../contexts/context";
 
 export default function DeleteNoteIcon(props) {
-  const { notes, setNotes } = useContext(NoteContext);
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [collapse, setCollapse] = useState(true);
+  const { notes, setNotes, setSuccess, setError, setFeedbackMessage, setCollapse } = useContext(NoteContext);
+
 
   function onClickEvent() {
     axios
@@ -21,48 +17,22 @@ export default function DeleteNoteIcon(props) {
         },
       })
       .then((resp) => {
-        console.log(resp);
+        setFeedbackMessage("Note deleted successfully")
+        setCollapse(true)
         setSuccess(true);
         const newData = notes.filter((note) => {
-            return note.note_id !== props.note_id
-        })
-        setNotes(newData)
+          return note.note_id !== props.note_id;
+        });
+        setNotes(newData);
       })
       .catch((err) => {
+        setCollapse(true)
+        setFeedbackMessage("An error has occurred")
         setError(true);
-        console.log(err);
       });
   }
   return (
     <div className="delete-icon">
-      {error ? (
-        <Collapse in={collapse}>
-          <Alert
-            onClose={() => {
-              setCollapse(false);
-            }}
-            severity="error"
-          >
-            An error has occurred
-          </Alert>
-        </Collapse>
-      ) : (
-        false
-      )}
-      {success ? (
-        <Collapse in={collapse}>
-          <Alert
-            onClose={() => {
-              setCollapse(false);
-            }}
-            severity="success"
-          >
-            Note deleted successfully
-          </Alert>
-        </Collapse>
-      ) : (
-        false
-      )}
       <IconButton>
         <DeleteForeverIcon onClick={onClickEvent} />
       </IconButton>
