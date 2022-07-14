@@ -4,21 +4,12 @@ import axios from "axios";
 import { Alert } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import AddNote from "./addNote";
+import { NoteContext } from "../contexts/context";
 
 function Home() {
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(false);
   const [collapse, setCollapse] = useState(true);
-  const [count, setCount] = useState(0);
-
-  const updateEffect = () => {
-    setCount(count + 1);
-  };
-
-  const getUpdate = (data) => {
-    // setNotes((prevItems) => [...prevItems, data]);
-    updateEffect()
-  };
 
   useEffect(() => {
     axios
@@ -30,7 +21,7 @@ function Home() {
         console.log(err);
         setError(true);
       });
-  }, [count]);
+  }, []);
 
   return error ? (
     <Collapse in={collapse}>
@@ -44,20 +35,26 @@ function Home() {
       </Alert>
     </Collapse>
   ) : (
-    <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
-      <h1 className="title">Welcome to INOTE</h1>
+    <NoteContext.Provider value={{ notes, setNotes }}>
+      <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
+        <h1 className="title">Welcome to INOTE</h1>
 
-      {console.log("map", notes)}
-      {notes.map((note) => (
-        <div
-          className="
+        {console.log("map", notes)}
+        {notes.map((note) => (
+          <div
+            className="
             note-container"
-        >
-          <Note content={note.note} key={note.note_id} note_id={note.note_id} />
-        </div>
-      ))}
-      <AddNote color="action" func={getUpdate} />
-    </div>
+          >
+            <Note
+              content={note.note}
+              key={note.note_id}
+              note_id={note.note_id}
+            />
+          </div>
+        ))}
+        <AddNote color="action"/>
+      </div>
+    </NoteContext.Provider>
   );
 }
 
