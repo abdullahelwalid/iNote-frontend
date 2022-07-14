@@ -7,7 +7,7 @@ import axios from "axios";
 import { Alert } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 
-function AddNote() {
+function AddNote(props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -18,7 +18,6 @@ function AddNote() {
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
-    console.log(event.target.value);
   };
   function onClickEvent() {
     axios
@@ -27,8 +26,10 @@ function AddNote() {
           note_content: message,
       })
       .then((resp) => {
-        console.log(resp);
         setSuccess(true);
+        setOpen(false)
+        setMessage("")
+        props.func(resp.data)
       })
       .catch((err) => {
         setError(true);
@@ -80,7 +81,7 @@ function AddNote() {
             />
           </div>
           <Button
-            sx={{ marginY: "30%", position: "absolute" }}
+            sx={{ marginY: "40%", position: "absolute" }}
             variant="contained"
             onClick={onClickEvent}
           >
