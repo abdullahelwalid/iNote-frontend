@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
@@ -8,8 +8,10 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import NoteIcon from '@mui/icons-material/Note';
+import NoteIcon from "@mui/icons-material/Note";
 import Divider from "@mui/material/Divider";
+
+import { userContext } from "../contexts/context";
 
 const drawerWidth = 240;
 
@@ -23,6 +25,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 function Navbar() {
+  const { authenticated, setAuthenticated } = useContext(userContext);
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -40,7 +43,7 @@ function Navbar() {
           float: "left",
           display: "inline",
           paddingLeft: "15px",
-          color: "#51557E"
+          color: "#51557E",
         }}
       >
         <IconButton
@@ -82,15 +85,23 @@ function Navbar() {
           </List>
         </Drawer>
       </div>
-      <a href="/" style={{ textDecoration: "none"}}>
+      <a href="/" style={{ textDecoration: "none" }}>
         <h1 className="nav-bar-logo">INOTE</h1>
       </a>
-      <a href="/login" style={{ textDecoration: "none"}}>
-        <h2 className="nav-bar-text">Login</h2>
-      </a>
-      <a href="/sign-up" style={{ textDecoration: "none"}}>
-        <h2 className="nav-bar-text">Sign up</h2>
-      </a>
+      {authenticated ? (
+        <a href="" style={{ textDecoration: "none" }}>
+          <h2 className="nav-bar-text">Sign out</h2>
+        </a>
+      ) : (
+        <div>
+          <a href="/login" style={{ textDecoration: "none" }}>
+            <h2 className="nav-bar-text">Login</h2>
+          </a>
+          <a href="/sign-up" style={{ textDecoration: "none" }}>
+            <h2 className="nav-bar-text">Sign up</h2>
+          </a>
+        </div>
+      )}
     </div>
   );
 }

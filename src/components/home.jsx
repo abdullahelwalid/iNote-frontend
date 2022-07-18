@@ -20,6 +20,7 @@ function Home() {
       })
       .catch((err) => {
         console.log(err);
+        setFeedbackMessage("An error has occurred")
         setError(true);
         setCollapse(true)
       });
