@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Collapse } from "@mui/material";
 import { Alert } from "@mui/material";
-import { NoteContext } from "../contexts/context";
+import { userContext } from "../contexts/context";
 
 function FeedbackMessage(props) {
   const {
@@ -10,7 +10,7 @@ function FeedbackMessage(props) {
     setSuccess,
     setError,
     setCollapse,
-  } = useContext(NoteContext);
+  } = useContext(userContext);
   return (
     <div className="feedback">
       <Collapse in={collapse}>

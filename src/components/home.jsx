@@ -1,29 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Note from "./note";
 import axios from "axios";
 import AddNote from "./addNote";
 import { NoteContext } from "../contexts/context";
-import FeedbackMessage from "./feedback";
+import { userContext } from "../contexts/context";
 
 function Home() {
   const [notes, setNotes] = useState([]);
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [collapse, setCollapse] = useState(true);
-  const [feedbackMessage, setFeedbackMessage] = useState();
+  const {
+    authenticated,
+    setAuthenticated,
+    setFeedbackMessage,
+    setError,
+    setCollapse,
+    userId,
+    token,
+  } = useContext(userContext);
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:5000/note?user_id=usertest33")
-      .then((resp) => {
-        setNotes(resp.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        setFeedbackMessage("An error has occurred")
-        setError(true);
-        setCollapse(true)
-      });
+    if (authenticated) {
+      axios
+        .get("http://127.0.0.1:5000/note?user_id=".concat(userId), {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((resp) => {
+          setNotes(resp.data);
+        })
+        .catch((err) => {
+          if (err.response.status === 401) {
+            return setAuthenticated(false);
+          }
+          setFeedbackMessage("An error has occurred");
+          setError(true);
+          setCollapse(true);
+        });
+    }
   }, []);
 
   return (
@@ -31,20 +42,11 @@ function Home() {
       value={{
         notes,
         setNotes,
-        feedbackMessage,
-        setFeedbackMessage,
-        collapse,
-        setSuccess,
-        setError,
-        setCollapse,
       }}
     >
       <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
-        {error && <FeedbackMessage type="error"/>}
-        {success && <FeedbackMessage type="success"/>}
         <h1 className="title">Welcome to INOTE</h1>
 
-        {console.log("map", notes)}
         {notes.map((note) => (
           <div
             className="

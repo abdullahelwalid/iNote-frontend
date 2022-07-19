@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
@@ -10,6 +11,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import NoteIcon from "@mui/icons-material/Note";
 import Divider from "@mui/material/Divider";
+
+
 
 import { userContext } from "../contexts/context";
 
@@ -25,6 +28,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 function Navbar() {
+  const navigate = useNavigate();
   const { authenticated, setAuthenticated } = useContext(userContext);
   const [open, setOpen] = React.useState(false);
 
@@ -85,12 +89,18 @@ function Navbar() {
           </List>
         </Drawer>
       </div>
-      <a href="/" style={{ textDecoration: "none" }}>
-        <h1 className="nav-bar-logo">INOTE</h1>
-      </a>
+
+      <h1 className="nav-bar-logo" onClick={() => {
+        navigate('/')
+      }}>
+        INOTE
+      </h1>
       {authenticated ? (
-        <a href="" style={{ textDecoration: "none" }}>
-          <h2 className="nav-bar-text">Sign out</h2>
+        <a href="/login" style={{ textDecoration: "none" }}>
+          <h2 className="nav-bar-text" onClick={() => {
+            localStorage.clear()
+            setAuthenticated(false)
+          }}>Sign out</h2>
         </a>
       ) : (
         <div>
