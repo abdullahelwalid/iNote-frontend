@@ -7,10 +7,8 @@ import { editNoteContext } from "../contexts/context";
 
 export default function Note(props) {
   const [noteContent, setNoteContent] = useState(props.content);
-  const [size, setSize] = useState("140px");
   const [edit, setEdit] = useState(false);
   const handleNoteChange = (event) => {
-    console.log(event.target.value);
     setNoteContent(event.target.value);
   };
   return (
@@ -20,7 +18,6 @@ export default function Note(props) {
         edit,
         noteContent,
         setNoteContent,
-        setSize,
       }}
     >
       <div>
@@ -29,7 +26,6 @@ export default function Note(props) {
             content={noteContent}
             note_id={props.note_id}
             datetime={props.datetime}
-            edit={setEdit}
           />
         )}
         <Box
@@ -47,13 +43,11 @@ export default function Note(props) {
             <p style={{ fontSize: "10px" }}>{props.datetime}</p>
             <textarea
               onClick={() => {
-                setSize("200px");
                 setEdit(true);
-                console.log("aaa");
               }}
               className="note"
               value={noteContent}
-              style={{ backgroundColor: "white", height: size }}
+              style={{ backgroundColor: "white"}}
               contentEditable="true"
               onChange={handleNoteChange}
               suppressContentEditableWarning={true}

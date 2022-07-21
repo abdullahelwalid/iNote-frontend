@@ -78,11 +78,11 @@ function AddNote() {
         </div>
       </Modal>
       <div className="add-note">
-        <IconButton color="primary">
+        <IconButton onClick={handleOpen} color="primary">
           <AddCircleIcon
             className="add-icon"
             sx={{ fontSize: 50 }}
-            onClick={handleOpen}
+            
           ></AddCircleIcon>
         </IconButton>
       </div>

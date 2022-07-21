@@ -47,8 +47,9 @@ function Home() {
       <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
         <h1 className="title">Welcome to INOTE</h1>
 
-        {notes.map((note) => (
+        {notes.map((note, index) => (
           <div
+            key={index}
             className="
             note-container"
           >

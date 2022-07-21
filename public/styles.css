@@ -103,6 +103,7 @@
 }
 .note:hover {
   box-shadow: 3px 0 10px #dbe5e5;
+  height: 200px;
 }
 
 .note-container{

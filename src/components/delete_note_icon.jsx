@@ -17,15 +17,13 @@ export default function DeleteNoteIcon(props) {
   } = useContext(userContext);
   function onClickEvent() {
     axios
-      .delete(
-        "http://127.0.0.1:5000/note",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          data: {
-            user_id: userId,
-            note_id: props.note_id
-          }
-        })
+      .delete("http://127.0.0.1:5000/note", {
+        headers: { Authorization: `Bearer ${token}` },
+        data: {
+          user_id: userId,
+          note_id: props.note_id,
+        },
+      })
       .then((resp) => {
         setFeedbackMessage("Note deleted successfully");
         setCollapse(true);
@@ -43,8 +41,8 @@ export default function DeleteNoteIcon(props) {
   }
   return (
     <div className="delete-icon">
-      <IconButton>
-        <DeleteForeverIcon onClick={onClickEvent} />
+      <IconButton onClick={onClickEvent}>
+        <DeleteForeverIcon />
       </IconButton>
     </div>
   );

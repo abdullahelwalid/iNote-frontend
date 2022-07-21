@@ -104,11 +104,18 @@ function Navbar() {
         </a>
       ) : (
         <div>
-          <a href="/login" style={{ textDecoration: "none" }}>
-            <h2 className="nav-bar-text">Login</h2>
+          <a href="/login" style={{ textDecoration: "none" }} >
+            <h2 className="nav-bar-text" onClick={() => {
+            localStorage.clear()
+            setAuthenticated(false)
+          }}>Login</h2>
           </a>
+
           <a href="/sign-up" style={{ textDecoration: "none" }}>
-            <h2 className="nav-bar-text">Sign up</h2>
+            <h2 className="nav-bar-text" onClick={() => {
+            localStorage.clear()
+            setAuthenticated(false)
+          }}>Sign up</h2>
           </a>
         </div>
       )}

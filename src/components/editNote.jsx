@@ -6,7 +6,7 @@ import axios from "axios";
 import { userContext } from "../contexts/context";
 
 function EditNote(props) {
-  const { edit, noteContent, setNoteContent, setEdit, setSize } = useContext(
+  const { edit, noteContent, setNoteContent, setEdit } = useContext(
     editNoteContext
   );
   const {
@@ -20,7 +20,6 @@ function EditNote(props) {
     setNoteContent(event.target.value);
   };
   const handleModalClose = () => {
-    setSize("140px");
     setEdit(false);
   };
   const saveNote = () => {
@@ -38,7 +37,6 @@ function EditNote(props) {
       )
       .then((resp) => {
         setEdit(false);
-        setSize("140px");
       })
       .catch((err) => {
         setFeedbackMessage("An error has occurred");

@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 import axios from "axios";
 import { userContext } from "../contexts/context";
+import { useNavigate } from "react-router-dom";
 
 function Form() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const {
     setAuthenticated,
     setError,
@@ -16,7 +18,6 @@ function Form() {
     setToken,
     setUserId,
   } = useContext(userContext);
-
   function submitForm() {
     axios
       .post("http://127.0.0.1:5000/sign-in", {
@@ -25,9 +26,9 @@ function Form() {
       })
       .then((resp) => {
         setToken(resp.data.token);
-        localStorage.clear()
-        localStorage.setItem('token', resp.data.token)
-        localStorage.setItem('user_id', resp.data.user_id)
+        localStorage.clear();
+        localStorage.setItem("token", resp.data.token);
+        localStorage.setItem("user_id", resp.data.user_id);
         setUserId(resp.data.user_id);
         setAuthenticated(true);
       })
@@ -36,6 +37,7 @@ function Form() {
           setError(true);
           setFeedbackMessage("Invalid username or password");
           setCollapse(true);
+          setAuthenticated(false);
         }
       });
   }
@@ -75,7 +77,12 @@ function Form() {
         You don't have an account?
       </p>
       <Link to="/sign-up">
-        <button variant="outlined" onClick={submitForm}>
+        <button
+          variant="outlined"
+          onClick={() => {
+            navigate("/sign-up");
+          }}
+        >
           Sign up
         </button>
       </Link>
