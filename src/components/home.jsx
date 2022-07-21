@@ -7,6 +7,7 @@ import { userContext } from "../contexts/context";
 
 function Home() {
   const [notes, setNotes] = useState([]);
+
   const {
     authenticated,
     setAuthenticated,
@@ -16,7 +17,6 @@ function Home() {
     userId,
     token,
   } = useContext(userContext);
-
   useEffect(() => {
     if (authenticated) {
       axios
@@ -56,6 +56,7 @@ function Home() {
               content={note.note}
               key={note.note_id}
               note_id={note.note_id}
+              datetime={note.datetime}
             />
           </div>
         ))}

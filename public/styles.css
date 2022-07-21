@@ -89,20 +89,28 @@
   }
   
 .note {
-    max-height: 100px;
-    width: 400;
-    overflow: scroll;
+    /* max-height: 140px; */
+    height: 140px;
+    width: 100%;
+    border-style: solid;
+    border-color: rgb(213, 213, 232);
+    overflow-y: scroll;
     text-align: justify;
     padding: 10px 10px 10px 10px;
-    height: inherit;
+    border-radius: 5px;
+    transition: all 0.5s;
+    resize: none;
+}
+.note:hover {
+  box-shadow: 3px 0 10px #dbe5e5;
 }
 
 .note-container{
     display: inline-table;
     width: 420px;
-    max-height: 140px;
     float: center;
     text-align: justify;
+    padding: 10px 10px 10px 10px;
 }
 
 
