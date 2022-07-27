@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import DeleteNoteIcon from "./delete_note_icon";
 import EditNote from "./editNote";
 import { editNoteContext } from "../contexts/context";
+import { Chip } from "@mui/material";
 
 export default function Note(props) {
   const [noteContent, setNoteContent] = useState(props.content);
@@ -39,15 +40,34 @@ export default function Note(props) {
           }}
         >
           <Paper elevation={5} style={{ textAlign: "center" }}>
-            <DeleteNoteIcon note_id={props.note_id} />
-            <p style={{ fontSize: "10px" }}>{props.datetime}</p>
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Chip
+                label="category"
+                variant="outlined"
+                size="small"
+                sx={{ fontSize: "10px", margin: "10px" }}
+                color="primary"
+              />
+              <p style={{ fontSize: "10px", margin: "auto" }}>
+                {props.datetime}
+              </p>
+              <div style={{ display: "" }}>
+                <DeleteNoteIcon note_id={props.note_id} />
+              </div>
+            </div>
             <textarea
               onClick={() => {
                 setEdit(true);
               }}
               className="note"
               value={noteContent}
-              style={{ backgroundColor: "white"}}
+              style={{ backgroundColor: "white" }}
               contentEditable="true"
               onChange={handleNoteChange}
               suppressContentEditableWarning={true}

@@ -42,7 +42,7 @@ export default function DeleteNoteIcon(props) {
   return (
     <div className="delete-icon">
       <IconButton onClick={onClickEvent}>
-        <DeleteForeverIcon />
+        <DeleteForeverIcon color="error" sx={{fontSize: "15px"}} />
       </IconButton>
     </div>
   );

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
-import Drawer from "@mui/material/Drawer";
+// import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -11,8 +11,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import NoteIcon from "@mui/icons-material/Note";
 import Divider from "@mui/material/Divider";
-
-
+import Drawer from "./drawer";
 
 import { userContext } from "../contexts/context";
 
@@ -41,25 +40,39 @@ function Navbar() {
   };
   return (
     <div className="nav-bar">
-      <div
-        style={{
-          width: "50px",
-          float: "left",
-          display: "inline",
-          paddingLeft: "15px",
-          color: "#51557E",
-        }}
-      >
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-          edge="start"
-          sx={{ mr: 2, ...(open && { display: "none", float: "left" }) }}
+      {authenticated && (
+        <div
+          style={{
+            width: "50px",
+            float: "left",
+            display: "inline",
+            paddingLeft: "15px",
+            color: "#51557E",
+          }}
         >
-          <MenuIcon />
-        </IconButton>
-        <Drawer
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: "none", float: "left" }) }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Drawer
+            isOpen={open}
+            onClose={() => {
+              setOpen(false);
+            }}
+          >
+            <IconButton onClick={handleDrawerClose} sx={{ marginLeft: "80%" }}>
+              <ChevronLeftIcon />
+            </IconButton>
+            <Divider />
+          </Drawer>
+        </div>
+      )}
+      {/* <Drawer
           PaperProps={{ style: { height: "150px", background: "#D6E6F2" } }}
           sx={{
             width: drawerWidth,
@@ -87,35 +100,52 @@ function Navbar() {
               <ListItemText primary="Notes" />
             </ListItemButton>
           </List>
-        </Drawer>
-      </div>
+        </Drawer> */}
 
-      <h1 className="nav-bar-logo" onClick={() => {
-        navigate('/')
-      }}>
-        INOTE
+      <h1
+        className="nav-bar-logo"
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        iNOTE
       </h1>
       {authenticated ? (
         <a href="/login" style={{ textDecoration: "none" }}>
-          <h2 className="nav-bar-text" onClick={() => {
-            localStorage.clear()
-            setAuthenticated(false)
-          }}>Sign out</h2>
+          <h2
+            className="nav-bar-text"
+            onClick={() => {
+              localStorage.clear();
+              setAuthenticated(false);
+            }}
+          >
+            Sign out
+          </h2>
         </a>
       ) : (
         <div>
-          <a href="/login" style={{ textDecoration: "none" }} >
-            <h2 className="nav-bar-text" onClick={() => {
-            localStorage.clear()
-            setAuthenticated(false)
-          }}>Login</h2>
+          <a href="/login" style={{ textDecoration: "none" }}>
+            <h2
+              className="nav-bar-text"
+              onClick={() => {
+                localStorage.clear();
+                setAuthenticated(false);
+              }}
+            >
+              Login
+            </h2>
           </a>
 
           <a href="/sign-up" style={{ textDecoration: "none" }}>
-            <h2 className="nav-bar-text" onClick={() => {
-            localStorage.clear()
-            setAuthenticated(false)
-          }}>Sign up</h2>
+            <h2
+              className="nav-bar-text"
+              onClick={() => {
+                localStorage.clear();
+                setAuthenticated(false);
+              }}
+            >
+              Sign up
+            </h2>
           </a>
         </div>
       )}

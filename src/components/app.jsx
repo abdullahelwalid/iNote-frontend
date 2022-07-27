@@ -26,7 +26,6 @@ function App() {
     setUserId(localStorage.getItem("user_id"))
     setAuthenticated(true)
   }, [localStorage.getItem("token"), localStorage.getItem("user_id")])
-
   return (
     <userContext.Provider
       value={{

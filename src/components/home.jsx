@@ -4,6 +4,7 @@ import axios from "axios";
 import AddNote from "./addNote";
 import { NoteContext } from "../contexts/context";
 import { userContext } from "../contexts/context";
+import CategoryMenu from "./category_menu";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -45,7 +46,14 @@ function Home() {
       }}
     >
       <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
-        <h1 className="title">Welcome to INOTE</h1>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{
+          margin: "auto"
+        }}>
+          <CategoryMenu />
+        </div>
+          <h1 className="title" style={{margin: "auto", display: "flex"}}>Welcome to INOTE</h1>
+        </div>
 
         {notes.map((note, index) => (
           <div

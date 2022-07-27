@@ -26,7 +26,7 @@
     display: inline;
     float: right;
     padding: 0 10px 0 10px;
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 10px;
     color: #51557E;
 }
@@ -42,6 +42,7 @@
 
   .title {
     margin-bottom: 10px;
+    font-size: "5px";
   }
 
   .container {
@@ -144,6 +145,8 @@
     margin-top: 10%;
     margin-left: 15%;
     box-shadow: 5px 10px 18px #888888;
+    background-color: rgb(242, 243, 246);
+    align-items: center;
 }
 
 .add-note-textarea {
@@ -152,7 +155,8 @@
     resize: none;
     padding: 10px 10px 10px 10px;
     background-color: #f8f5ee;
-    box-shadow: 5px 10px 18px #888888;
+    box-shadow: 2px 2px 18px #a8a8a8;
+    margin-bottom: 20px;
 }
 
 
@@ -161,3 +165,79 @@
   position: absolute;
   width: 100%;
 }
+
+.drawer-container {
+  --transition-speed: 0.3s;
+}
+
+.drawer {
+  background: #fff;
+  width: 30%;
+  height: 100%;
+	overflow: auto;
+  position: fixed;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-speed) ease;
+  z-index: 1000;
+}
+
+.drawer.left {
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.drawer-container.open .left {
+  transform: translateX(0);
+}
+
+.backdrop {
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity var(--transition-speed) ease,
+    visibility var(--transition-speed) ease;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  pointer-events: none;
+	z-index: 0;
+}
+
+/*
+	Only apply the box-shadow when open to prevent the shadow
+  from appearing on the edge of the screen when inactive
+ */
+.drawer-container.open .drawer {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.drawer-container.open .backdrop {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+	z-index: 999;
+}
+
+.select-category {
+  display: flex;
+  float: right;
+}
+.select-category-button {
+  width: auto;
+  height: auto;
+  align-items: center;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-left: 20px;
+}
+.select-category-button:hover{
+  background-color: #9aaec5;
+  /* border-radius: 10px; */
+  border-color: rgb(0, 0, 0);
+  cursor: pointer;
+  -webkit-transition: background-color 0.4s ease-out;
+}
+

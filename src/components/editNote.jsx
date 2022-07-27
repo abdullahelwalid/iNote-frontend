@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Modal } from "@mui/material";
 import { Button } from "@mui/material";
 import { editNoteContext } from "../contexts/context";
 import axios from "axios";
 import { userContext } from "../contexts/context";
+import SelectCategory from "./select_category";
 
 function EditNote(props) {
   const { edit, noteContent, setNoteContent, setEdit } = useContext(
     editNoteContext
   );
+  const [newNoteContent, setNewNoteContent] = useState(noteContent);
   const {
     token,
     userId,
@@ -17,7 +19,7 @@ function EditNote(props) {
     setCollapse,
   } = useContext(userContext);
   const handleNoteChange = (event) => {
-    setNoteContent(event.target.value);
+    setNewNoteContent(event.target.value);
   };
   const handleModalClose = () => {
     setEdit(false);
@@ -28,7 +30,7 @@ function EditNote(props) {
         "http://127.0.0.1:5000/note",
         {
           note_id: props.note_id,
-          note_content: noteContent,
+          note_content: newNoteContent,
           user_id: userId,
         },
         {
@@ -36,6 +38,7 @@ function EditNote(props) {
         }
       )
       .then((resp) => {
+        setNoteContent(newNoteContent)
         setEdit(false);
       })
       .catch((err) => {
@@ -47,33 +50,67 @@ function EditNote(props) {
   return (
     <Modal open={edit} onClose={handleModalClose}>
       <div className="new-note">
-        <p style={{ fontSize: "10px" }}>{props.datetime}</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div style={{ flex: "auto" }}>
+            <p
+              style={{
+                fontSize: "10px",
+                padding: "10px",
+                color: "black",
+                width: "100px",
+              }}
+            >
+              {props.datetime}
+            </p>
+          </div>
+          <SelectCategory />
+        </div>
         <textarea
           className="add-note-textarea"
-          value={noteContent}
+          value={newNoteContent}
           style={{ backgroundColor: "white" }}
           contentEditable="true"
           onChange={handleNoteChange}
           suppressContentEditableWarning={true}
         />
-        {noteContent.length < 1 ? (
+        <div style={{ width: "100%", display: "flex" }}>
           <Button
-            sx={{ float: "center", marginBottom: "3px" }}
+            size="small"
             variant="contained"
-            onClick={saveNote}
-            disabled
+            color="error"
+            sx={{ margin: "auto" }}
+            onClick={() => {
+              setEdit(false);
+            }}
           >
-            save
+            Cancel
           </Button>
-        ) : (
-          <Button
-            sx={{ float: "center", marginBottom: "3px" }}
-            variant="contained"
-            onClick={saveNote}
-          >
-            save
-          </Button>
-        )}
+          {noteContent.length < 1 ? (
+            <Button
+              size="small"
+              sx={{ float: "right", margin: "auto" }}
+              variant="contained"
+              onClick={saveNote}
+              disabled
+            >
+              save
+            </Button>
+          ) : (
+            <Button
+              size="small"
+              sx={{ float: "right", margin: "auto" }}
+              variant="contained"
+              onClick={saveNote}
+            >
+              save
+            </Button>
+          )}
+        </div>
       </div>
     </Modal>
   );
