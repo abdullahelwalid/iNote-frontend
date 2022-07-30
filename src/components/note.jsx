@@ -5,13 +5,12 @@ import DeleteNoteIcon from "./delete_note_icon";
 import EditNote from "./editNote";
 import { editNoteContext } from "../contexts/context";
 import { Chip } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import IconButton from "@mui/material/IconButton";
 
 export default function Note(props) {
   const [noteContent, setNoteContent] = useState(props.content);
   const [edit, setEdit] = useState(false);
-  const handleNoteChange = (event) => {
-    setNoteContent(event.target.value);
-  };
   return (
     <editNoteContext.Provider
       value={{
@@ -57,20 +56,22 @@ export default function Note(props) {
               <p style={{ fontSize: "10px", margin: "auto" }}>
                 {props.datetime}
               </p>
-              <div style={{ display: "" }}>
+              <div style={{ display: "inline" }}>
                 <DeleteNoteIcon note_id={props.note_id} />
+                <IconButton
+                  onClick={() => {
+                    setEdit(true);
+                  }}
+                >
+                  <EditIcon color="success" sx={{ fontSize: "15px" }} />
+                </IconButton>
               </div>
             </div>
             <textarea
-              onClick={() => {
-                setEdit(true);
-              }}
               className="note"
               value={noteContent}
               style={{ backgroundColor: "white" }}
-              contentEditable="true"
-              onChange={handleNoteChange}
-              suppressContentEditableWarning={true}
+              onChange={() => {}}
             />
             {/* <p className="note" contentEditable="true">
             

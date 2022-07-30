@@ -1,6 +1,7 @@
 {
   "name": "login_page",
   "version": "0.1.0",
+  "main": "electron/main.ts",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -12,8 +13,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
-    "electron": "^19.0.9",
-    "electron-builder": "^23.1.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-fontawesome": "^1.7.1",
@@ -25,13 +24,22 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-electron": "react-scripts build",
+    "electron:start": "concurrently \"yarn start\" \"wait-on http://localhost:3001 && electron .\"",
+    "electron:build": "npm run build-electron && electron-builder build --publish never",
+    "electron:build:all": "npm run build-electron && electron-builder build --publish never -mwl",
+    "dist:linux": "electron-builder --linux"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "devDependencies": {
+    "electron": "^18.2.4",
+    "electron-builder": "^23.0.3"
   },
   "browserslist": {
     "production": [
