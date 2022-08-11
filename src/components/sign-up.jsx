@@ -13,7 +13,7 @@ function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { setFeedbackMessage, setSuccess, setError, setCollapse } = useContext(
+  const { setFeedbackMessage, setSuccess, setError, setCollapse, URL } = useContext(
     userContext
   );
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ function Signup() {
   function onSubmitForm() {
     if (password === confirmPassword) {
       axios
-        .post("http://127.0.0.1:5000/sign-up", {
+        .post(`${URL}/sign-up`, {
           username: username,
           email: email,
           firstname: firstName,

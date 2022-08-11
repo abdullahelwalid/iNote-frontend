@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import BookmarksIcon from '@mui/icons-material/Bookmarks';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import { NoteContext } from "../contexts/context";
 
 const theme = createTheme({
   palette: {
@@ -16,6 +17,7 @@ const theme = createTheme({
 
 function CategoryMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const { categories, setCategories } = useContext(NoteContext);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,7 +37,7 @@ function CategoryMenu() {
           onClick={handleClick}
           variant="outlined"
           color="custom"
-          endIcon={<BookmarksIcon />}
+          endIcon={<FilterAltOutlinedIcon />}
         >
           Category
         </Button>
@@ -48,10 +50,20 @@ function CategoryMenu() {
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
+        PaperProps={{
+          style: {
+            maxHeight: 200,
+            width: "20ch",
+          },
+        }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        {categories.map((category, index) => {
+          return (
+            <MenuItem key={index} onClick={handleClose}>
+              {category.category}
+            </MenuItem>
+          );
+        })}
       </Menu>
     </div>
   );

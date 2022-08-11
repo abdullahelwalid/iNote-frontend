@@ -17,6 +17,7 @@ function EditNote(props) {
     setFeedbackMessage,
     setError,
     setCollapse,
+    URL,
   } = useContext(userContext);
   const handleNoteChange = (event) => {
     setNewNoteContent(event.target.value);
@@ -27,14 +28,14 @@ function EditNote(props) {
   const saveNote = () => {
     axios
       .put(
-        "http://127.0.0.1:5000/note",
+        `${URL}/note`,
         {
           note_id: props.note_id,
           note_content: newNoteContent,
           user_id: userId,
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` }
         }
       )
       .then((resp) => {

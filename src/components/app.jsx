@@ -7,7 +7,6 @@ import Navbar from "./navbar";
 import FeedbackMessage from "./feedback";
 import { userContext } from "../contexts/context";
 
-
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [token, setToken] = useState("");
@@ -16,16 +15,19 @@ function App() {
   const [success, setSuccess] = useState(false);
   const [collapse, setCollapse] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState();
-
+  const URL = "";
 
   useEffect(() => {
-    if (localStorage.getItem("token") === null || localStorage.getItem("user_id") === null){
-      return setAuthenticated(false)
+    if (
+      localStorage.getItem("token") === null ||
+      localStorage.getItem("user_id") === null
+    ) {
+      return setAuthenticated(false);
     }
-    setToken(localStorage.getItem("token"))
-    setUserId(localStorage.getItem("user_id"))
-    setAuthenticated(true)
-  }, [localStorage.getItem("token"), localStorage.getItem("user_id")])
+    setToken(localStorage.getItem("token"));
+    setUserId(localStorage.getItem("user_id"));
+    setAuthenticated(true);
+  }, [localStorage.getItem("token"), localStorage.getItem("user_id")]);
   return (
     <userContext.Provider
       value={{
@@ -41,6 +43,7 @@ function App() {
         setSuccess,
         setError,
         setCollapse,
+        URL,
       }}
     >
       <div className="App">

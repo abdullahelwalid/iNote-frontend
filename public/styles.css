@@ -16,9 +16,9 @@
   }
   
 .nav-bar {
-    height: 40px;
+    height: 2.5rem;
     background: #D6E6F2;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
     
 }
 
@@ -41,7 +41,7 @@
 }
 
   .title {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
     font-size: "5px";
   }
 
@@ -225,23 +225,4 @@
 	z-index: 999;
 }
 
-.select-category {
-  display: flex;
-  float: right;
-}
-.select-category-button {
-  width: auto;
-  height: auto;
-  align-items: center;
-  border: 1px solid rgb(255, 255, 255);
-  border-radius: 10px;
-  margin-left: 20px;
-}
-.select-category-button:hover{
-  background-color: #9aaec5;
-  /* border-radius: 10px; */
-  border-color: rgb(0, 0, 0);
-  cursor: pointer;
-  -webkit-transition: background-color 0.4s ease-out;
-}
 

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Collapse } from "@mui/material";
 import { Alert } from "@mui/material";
 import { userContext } from "../contexts/context";
@@ -25,6 +25,30 @@ function FeedbackMessage(props) {
           {feedbackMessage}
         </Alert>
       </Collapse>
+    </div>
+  );
+}
+
+export function Message(props) {
+  const [show, setShow] = useState(props.show);
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      setShow(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [show]);
+
+  return (
+    <div>
+      { show && <div>
+      <Alert severity="success" color="success">
+      {props.category} added successfully
+    </Alert>
+      </div>
+    }
     </div>
   );
 }

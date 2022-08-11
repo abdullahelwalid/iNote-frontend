@@ -14,10 +14,11 @@ export default function DeleteNoteIcon(props) {
     setCollapse,
     userId,
     token,
+    URL
   } = useContext(userContext);
   function onClickEvent() {
     axios
-      .delete("http://127.0.0.1:5000/note", {
+      .delete(`${URL}/note`, {
         headers: { Authorization: `Bearer ${token}` },
         data: {
           user_id: userId,

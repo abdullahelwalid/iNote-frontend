@@ -1,10 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import DeleteNoteIcon from "./delete_note_icon";
-import { Chip } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import IconButton from "@mui/material/IconButton";
 import Skeleton from "@mui/material/Skeleton";
 
 function SkeletonContent() {

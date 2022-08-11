@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { NoteContext } from "../contexts/context";
 import { userContext } from "../contexts/context";
+import SelectCategory from "./select_category";
 
 function AddNote() {
   const { setNotes } = useContext(NoteContext);
@@ -16,6 +17,7 @@ function AddNote() {
     setCollapse,
     userId,
     token,
+    URL
   } = useContext(userContext);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -29,13 +31,13 @@ function AddNote() {
   function onClickEvent() {
     axios
       .post(
-        "http://127.0.0.1:5000/note",
+        `${URL}/note`,
         {
           user_id: userId,
           note_content: message,
         },
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` }
         }
       )
       .then((resp) => {
@@ -62,19 +64,32 @@ function AddNote() {
       >
         <div>
           <div className="new-note">
+          <SelectCategory/>
             <textarea
               className="add-note-textarea"
               value={message}
               onChange={handleMessageChange}
             />
-          </div>
+             <Button
+            size="small"
+            variant="contained"
+            color="error"
+            sx={{marginRight: "10px"}}
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
           <Button
-            sx={{ marginY: "40%", position: "absolute" }}
+            sx={{position: "relative" }}
             variant="contained"
             onClick={onClickEvent}
+            size="small"
           >
             save
           </Button>
+         
+          
+          </div>
         </div>
       </Modal>
       <div className="add-note">

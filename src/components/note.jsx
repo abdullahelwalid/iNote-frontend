@@ -73,9 +73,6 @@ export default function Note(props) {
               style={{ backgroundColor: "white" }}
               onChange={() => {}}
             />
-            {/* <p className="note" contentEditable="true">
-            
-          </p> */}
           </Paper>
         </Box>
       </div>
