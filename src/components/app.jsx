@@ -15,7 +15,7 @@ function App() {
   const [success, setSuccess] = useState(false);
   const [collapse, setCollapse] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState();
-  const URL = "";
+  const URL = "http://54.255.0.50";
 
   useEffect(() => {
     if (

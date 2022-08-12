@@ -6,9 +6,7 @@ import { NoteContext } from "../contexts/context";
 import { userContext } from "../contexts/context";
 import CategoryMenu from "./category_menu";
 import NoteSkeleton from "./note_skeleton";
-import { IconButton, TextField } from "@mui/material";
 import { Message } from "./feedback";
-import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 
 function Home() {
   const [notes, setNotes] = useState([]);
