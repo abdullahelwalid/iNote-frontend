@@ -17,7 +17,7 @@ const theme = createTheme({
 
 function CategoryMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { categories, setCategories } = useContext(NoteContext);
+  const { categories } = useContext(NoteContext);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

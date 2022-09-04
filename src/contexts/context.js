@@ -5,3 +5,5 @@ export const NoteContext = createContext([]);
 export const userContext = createContext([]);
 
 export const editNoteContext = createContext([]);
+
+export const selectedCategoryContext = createContext("");

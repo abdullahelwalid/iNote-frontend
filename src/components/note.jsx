@@ -47,7 +47,7 @@ export default function Note(props) {
               }}
             >
               <Chip
-                label="category"
+                label={props.category? props.category.category: "----"}
                 variant="outlined"
                 size="small"
                 sx={{ fontSize: "10px", margin: "10px" }}

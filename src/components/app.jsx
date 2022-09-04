@@ -15,7 +15,7 @@ function App() {
   const [success, setSuccess] = useState(false);
   const [collapse, setCollapse] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState();
-  const URL = "http://54.255.0.50";
+  const URL = "https://n35eu46qy8.execute-api.ap-southeast-1.amazonaws.com/dev";
 
   useEffect(() => {
     if (
