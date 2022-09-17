@@ -4,14 +4,18 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { NoteContext, userContext, selectedCategoryContext } from "../contexts/context";
+import {
+  NoteContext,
+  userContext,
+  selectedCategoryContext,
+} from "../contexts/context";
 import { TextField } from "@mui/material";
 import axios from "axios";
 
 function CategoryMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const { categories, setCategories } = useContext(NoteContext);
-  const {category, setCategory} = useContext(selectedCategoryContext)
+  const { category, setCategory } = useContext(selectedCategoryContext);
   const { URL, token, userId, setAuthenticated } = useContext(userContext);
   const [showCategory, setShowCategory] = useState(false);
   const [newCategory, setNewCategory] = useState("");
@@ -64,6 +68,7 @@ function CategoryMenu() {
       >
         {category ? category.category : "Category"}
       </Button>
+
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -79,27 +84,6 @@ function CategoryMenu() {
           },
         }}
       >
-        <MenuItem
-              onClick={() => {
-                setCategory(null);
-                setAnchorEl(null);
-              }}
-            >
-              None
-            </MenuItem>
-        {categories.map((category) => {
-          return (
-            <MenuItem
-              key={category.id}
-              onClick={() => {
-                setCategory(category);
-                setAnchorEl(null);
-              }}
-            >
-              {category.category}
-            </MenuItem>
-          );
-        })}
         <MenuItem>
           <Button
             id="basic-button"
@@ -127,6 +111,27 @@ function CategoryMenu() {
             sx={{ width: "60%" }}
           />
         )}
+        <MenuItem
+          onClick={() => {
+            setCategory(null);
+            setAnchorEl(null);
+          }}
+        >
+          None
+        </MenuItem>
+        {categories.map((category) => {
+          return (
+            <MenuItem
+              key={category.id}
+              onClick={() => {
+                setCategory(category);
+                setAnchorEl(null);
+              }}
+            >
+              {category.category}
+            </MenuItem>
+          );
+        })}
       </Menu>
     </div>
   );
