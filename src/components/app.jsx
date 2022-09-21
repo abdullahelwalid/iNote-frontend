@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Home from "./home";
 import Form from "./login";
+import PageNotFound from "./page_not_found";
 import Signup from "./sign-up";
 import Navbar from "./navbar";
 import FeedbackMessage from "./feedback";
@@ -28,6 +29,7 @@ function App() {
     setUserId(localStorage.getItem("user_id"));
     setAuthenticated(true);
   }, [localStorage.getItem("token"), localStorage.getItem("user_id")]);
+  console.log(useLocation().pathname)
   return (
     <userContext.Provider
       value={{
@@ -66,6 +68,7 @@ function App() {
             path="/sign-up"
             element={authenticated ? <Navigate to="/" /> : <Signup />}
           />
+          <Route path="*" element={<PageNotFound/>}/>
         </Routes>
       </div>
     </userContext.Provider>

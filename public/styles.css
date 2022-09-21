@@ -4,7 +4,7 @@
     padding: 0;
     font-weight: 300;
   }
-  
+
   body {
     font-family: "Source Sans Pro", sans-serif;
     color: #f2f3f9;
@@ -223,4 +223,23 @@
 	z-index: 999;
 }
 
+
+.not-found{
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes notFound404 {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+.not-found-404{
+  align-self: center;
+  animation-name: notFound404;
+  animation-duration: 2s;
+  width: fit-content;
+  animation-iteration-count: infinite;
+}
 

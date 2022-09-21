@@ -99,7 +99,7 @@ function CategoryMenu() {
         {showCategory && (
           <TextField
             id="outlined-basic"
-            label="Outlined"
+            label="Category"
             variant="outlined"
             size="small"
             onChange={(event) => {
