@@ -6,7 +6,7 @@ import { NoteContext } from "../contexts/context";
 import { userContext } from "../contexts/context";
 import CategoryMenu from "./category_menu";
 import NoteSkeleton from "./note_skeleton";
-
+import ManageCategory from "./manage_category";
 
 function Home() {
   const [notes, setNotes] = useState([]);
@@ -76,9 +76,11 @@ function Home() {
           <div
             style={{
               margin: "auto",
+              display: "flex"
             }}
           >
             <CategoryMenu />
+            <ManageCategory/>
           </div>
           <h1 className="title" style={{ margin: "auto", display: "flex" }}>
             Welcome to INOTE

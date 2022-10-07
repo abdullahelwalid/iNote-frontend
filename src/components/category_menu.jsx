@@ -27,7 +27,7 @@ function CategoryMenu() {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: 'center' }}>
       <ThemeProvider theme={theme}>
         <Button
           id="basic-button"

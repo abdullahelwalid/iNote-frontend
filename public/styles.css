@@ -19,6 +19,7 @@
     height: 2.5rem;
     background: #D6E6F2;
     margin-bottom: 1rem;
+    width: 100%;
     
 }
 
@@ -242,4 +243,5 @@
   width: fit-content;
   animation-iteration-count: infinite;
 }
+
 

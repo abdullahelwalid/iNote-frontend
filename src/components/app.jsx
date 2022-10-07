@@ -48,7 +48,7 @@ function App() {
         URL,
       }}
     >
-      <div className="App">
+      <div className="app">
         <Navbar />
         {error && <FeedbackMessage type="error" />}
         {success && <FeedbackMessage type="success" />}
