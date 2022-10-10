@@ -97,19 +97,21 @@ function CategoryMenu() {
           </Button>
         </MenuItem>
         {showCategory && (
-          <TextField
-            id="outlined-basic"
-            label="Category"
-            variant="outlined"
-            size="small"
-            onChange={(event) => {
-              if (event.target.value.length <= 25) {
-                setNewCategory(event.target.value);
-              }
-            }}
-            value={newCategory}
-            sx={{ width: "60%" }}
-          />
+          <div>
+            <TextField
+              id="standard-basic"
+              label="Type here"
+              variant="standard"
+              size="small"
+              onChange={(event) => {
+                if (event.target.value.length <= 25) {
+                  setNewCategory(event.target.value);
+                }
+              }}
+              value={newCategory}
+              sx={{ width: "60%", fontSize: "10px" }}
+            />
+          </div>
         )}
         <MenuItem
           onClick={() => {

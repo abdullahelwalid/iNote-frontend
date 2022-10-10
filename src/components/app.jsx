@@ -16,7 +16,7 @@ function App() {
   const [success, setSuccess] = useState(false);
   const [collapse, setCollapse] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState();
-  const URL = "https://n35eu46qy8.execute-api.ap-southeast-1.amazonaws.com/dev";
+  const URL = "https://api.inotenow.com";
 
   useEffect(() => {
     if (
